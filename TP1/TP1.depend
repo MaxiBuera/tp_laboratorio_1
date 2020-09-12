@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1599861077 source:c:\users\maxii\documents\tps_utn\nueva carpeta\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+
+1599861075 c:\users\maxii\documents\tps_utn\nueva carpeta\tp1\funciones.h
+
+1599861230 source:c:\users\maxii\documents\tps_utn\nueva carpeta\tp1\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+
+1599861230 source:c:\users\maxii\documents\tps_utn\tp1\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+
+1599861075 c:\users\maxii\documents\tps_utn\tp1\funciones.h
+
+1599861486 source:c:\users\maxii\documents\tps_utn\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+
