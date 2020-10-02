@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1557543431 source:c:\users\maxi\desktop\tp2\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+	"empleado.h"
+
+1556233951 c:\users\maxi\desktop\tp2\tp2\utn.h
+
+1557543274 c:\users\maxi\desktop\tp2\tp2\empleado.h
+
+1556233951 source:c:\users\maxi\desktop\tp2\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+
+1557543420 source:c:\users\maxi\desktop\tp2\tp2\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"empleado.h"
+
+1557543420 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\tp2\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"empleado.h"
+
+1556233951 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\tp2\utn.h
+
+1557543274 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\tp2\empleado.h
+
+1556233951 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+
