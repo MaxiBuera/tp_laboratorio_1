@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="employee.c">
+		<Unit filename="ArrayEmployees.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="employee.h" />
+		<Unit filename="ArrayEmployees.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -44,6 +44,9 @@
 		<Unit filename="utn.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

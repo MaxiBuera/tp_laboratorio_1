@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "utn.h"
-#include "employee.h"
+#include "ArrayEmployees.h"
 #define SECTOR 10
 #define MINSALARY 0
 #define MAXSALARY 100000
@@ -32,11 +32,11 @@ void employee_normalizeTextString(char textString[]){
 
 int employee_initEmployees(eEmployee* arrayEmployees, int limit){
 
-    int error = -1;
+    int returnValue = -1;
     int i;
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = 0;
+        returnValue = 0;
         for(i=0;i<limit;i++)
         {
             arrayEmployees[i].id = -1;
@@ -48,12 +48,12 @@ int employee_initEmployees(eEmployee* arrayEmployees, int limit){
 
         }
     }
-    return error;
+    return returnValue;
 }
 
 int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
 
-    int error = -1;
+    int returnValue = -1;
     char nameAux[51];
     char lastnameAux[51];
     float salaryAux;
@@ -62,7 +62,7 @@ int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
 
     if(limit > 0 && arrayEmployees != NULL){
 
-        error = -2;
+        returnValue = -2;
         id = nextId();
 
         if(getStringLetras("Ingrese nombre: ",nameAux)){
@@ -83,44 +83,44 @@ int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
                         arrayEmployees[index].sector = sectorAux;
                         arrayEmployees[index].isEmpty = OCCUPIED;
                         arrayEmployees[index].id = id;
-                        error = 0;
+                        returnValue = 0;
                     }
                 }
             }
         }
     }
 
-    if(error != 0){
+    if(returnValue != 0){
 
         printf("\nError\n");
     }
 
-    return error;
+    return returnValue;
 
 }
 
 int employee_searchForFreePosition(eEmployee* arrayEmployees,int limit)
 {
-    int error = -1;
+    int returnValue = -1;
     int i;
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = -2;
+        returnValue = -2;
         for(i=0;i<limit;i++)
         {
             if(arrayEmployees[i].isEmpty == FREE)
             {
-                error = i;
+                returnValue = i;
                 break;
             }
         }
     }
-    return error;
+    return returnValue;
 }
 
 int employee_forceAdd(eEmployee* arrayEmployees,int limit,char* name,char* lastname, float salary,int sector)
 {
-    int error = -1;
+    int returnValue = -1;
     int i;
 
     if(limit > 0 && arrayEmployees != NULL)
@@ -128,7 +128,7 @@ int employee_forceAdd(eEmployee* arrayEmployees,int limit,char* name,char* lastn
         i = employee_searchForFreePosition(arrayEmployees,limit);
         if(i >= 0)
         {
-            error = 0;
+            returnValue = 0;
             strcpy(arrayEmployees[i].name,name);
             strcpy(arrayEmployees[i].lastname,lastname);
             arrayEmployees[i].salary = salary;
@@ -138,18 +138,18 @@ int employee_forceAdd(eEmployee* arrayEmployees,int limit,char* name,char* lastn
             arrayEmployees[i].id = nextId();
             arrayEmployees[i].isEmpty = OCCUPIED;
         }
-        error = 0;
+        returnValue = 0;
     }
-    return error;
+    return returnValue;
 }
 
 int employee_printEmployees(eEmployee* arrayEmployees,int limit){
 
-    int error = -1;
+    int returnValue = -1;
     int i;
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = 0;
+        returnValue = 0;
         printf("\n\tNombre\t\tApellido\tID\tSector\tSalario");
         printf("\n\t--------------------------------------------------------");
         for(i=0;i<limit;i++)
@@ -161,35 +161,35 @@ int employee_printEmployees(eEmployee* arrayEmployees,int limit){
            	}
         }
     }
-    return error;
+    return returnValue;
 }
 
 int employee_findEmployeeById(eEmployee* arrayEmployees,int limit, int id)
 {
-    int error = -1;
+    int returnValue = -1;
     int i;
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = -2;
+        returnValue = -2;
         for(i=0;i<limit;i++)
         {
             if(arrayEmployees[i].isEmpty == OCCUPIED && arrayEmployees[i].id == id)
             {
-                error = i;
+                returnValue = i;
                 break;
             }
         }
     }
-    return error;
+    return returnValue;
 }
 
 int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit){
 
-    int error = -1;
+    int returnValue = -1;
     int i;
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = 0;
+        returnValue = 0;
         printf("\n\tNombre\t\tApellido\tID");
         for(i=0;i<limit;i++)
         {
@@ -201,13 +201,13 @@ int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit){
         }
     }
     printf("\n\n");
-    return error;
+    return returnValue;
 }
 
 int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
 
     int indice;
-    int error = -1;
+    int returnValue = -1;
     char nameAux[51];
     char lastnameAux[51];
     float salaryAux;
@@ -217,7 +217,7 @@ int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
     indice = employee_findEmployeeById(arrayEmployees,limit,index);
     if(indice >= 0)
     {
-        error = 0;
+        returnValue = 0;
         if(getStringLetras("Ingrese nombre: ",nameAux)){
 
             if(getStringLetras("Ingrese nombre: ",lastnameAux)){
@@ -231,7 +231,7 @@ int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
                         arrayEmployees[index].salary = salaryAux;
                         arrayEmployees[index].salary = sectorAux;
                         arrayEmployees[index].isEmpty = OCCUPIED;
-                        error = 0;
+                        returnValue = 0;
                     }
                 }
             }
@@ -241,36 +241,36 @@ int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
 
         printf("\nID no encontrado");
     }
-    return error;
+    return returnValue;
 }
 
 int employee_removeEmployee(eEmployee* arrayEmployees, int limit,int index){
 
-    int error = -1;
+    int returnValue = -1;
     int indice;
     indice = employee_findEmployeeById(arrayEmployees,limit,index);
     if(indice >= 0)
     {
-        error = 0;
+        returnValue = 0;
         arrayEmployees[indice].isEmpty = FREE;
     }
     else{
 
         printf("\nID no encontrado");
     }
-    return error;
+    return returnValue;
 }
 
 int employee_orderByLastName(eEmployee* arrayEmployees,int limit, int order)
 {
-    int error = -1;
+    int returnValue = -1;
     int flagSwap;
     int i;
     eEmployee auxiliar;
 
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = 0;
+        returnValue = 0;
         do
         {
             flagSwap = 0;
@@ -290,19 +290,19 @@ int employee_orderByLastName(eEmployee* arrayEmployees,int limit, int order)
         }while(flagSwap);
     }
 
-    return error;
+    return returnValue;
 }
 
 int employee_orderBySector(eEmployee* arrayEmployees,int limit, int order)
 {
-    int error = -1;
+    int returnValue = -1;
     int flagSwap;
     int i;
     eEmployee auxiliar;
 
     if(limit > 0 && arrayEmployees != NULL)
     {
-        error = 0;
+        returnValue = 0;
         do
         {
             flagSwap = 0;
@@ -322,7 +322,7 @@ int employee_orderBySector(eEmployee* arrayEmployees,int limit, int order)
         }while(flagSwap);
     }
 
-    return error;
+    return returnValue;
 }
 
 float totalSalaries(eEmployee* arrayEmployees,int limit){
@@ -334,14 +334,17 @@ float totalSalaries(eEmployee* arrayEmployees,int limit){
 
         for(i=0;i<limit;i++){
 
-            total = total + arrayEmployees[i].salary;
+            if(arrayEmployees[i].isEmpty == OCCUPIED){
+
+                total = total + arrayEmployees[i].salary;
+            }
         }
     }
 
     return total;
 }
 
-int empleadosActuales(eEmployee* arrayEmployees,int limit){
+int currentEmployees(eEmployee* arrayEmployees,int limit){
 
     int i;
     int cantidadEmpleados = 0;
@@ -368,7 +371,7 @@ float employee_averageSalary(eEmployee* arrayEmployees,int limit){
     if(limit > 0 && arrayEmployees != NULL){
 
         total = totalSalaries(arrayEmployees,limit);
-        cantidadEmpleados = empleadosActuales(arrayEmployees,limit);
+        cantidadEmpleados = currentEmployees(arrayEmployees,limit);
 
         averageSalary = total / cantidadEmpleados;
 
@@ -381,13 +384,13 @@ float employee_averageSalary(eEmployee* arrayEmployees,int limit){
 
 int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSalary){
 
-    int error = -1;
+    int returnValue = -1;
     int i;
     int cantidadEmpleadosMayorAlPromedio = 0;
 
     if(limit > 0 && arrayEmployees != NULL){
 
-        error = 0;
+        returnValue = 0;
 
         for(i=0;i<limit;i++){
 
@@ -400,7 +403,7 @@ int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSala
 
     printf("\n\n\tCantidad de empleados cuyos salarios superan el promedio: %d empleado(s)",cantidadEmpleadosMayorAlPromedio);
 
-    return error;
+    return returnValue;
 }
 
 

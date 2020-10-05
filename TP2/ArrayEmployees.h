@@ -1,5 +1,5 @@
-#ifndef EMPLOYEE_H_INCLUDED
-#define EMPLOYEE_H_INCLUDED
+#ifndef ARRAYEMPLOYEES_H_INCLUDED
+#define ARRAYEMPLOYEES_H_INCLUDED
 
 typedef struct{
     int id;

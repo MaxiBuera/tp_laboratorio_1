@@ -3,10 +3,10 @@
 #include <time.h>
 #include <string.h>
 #include "utn.h"
-#include "employee.h"
-#define OCUPADO 0
-#define LIBRE 1
-#define EMPLOYEES 5 // no mas de 1000 empleados
+#include "ArrayEmployees.h"
+#define OCCUPIED 0
+#define FREE 1
+#define EMPLOYEES 5 // 1000 empleados
 
 int main()
 {
@@ -63,15 +63,15 @@ int main()
 
             case 3:
 
-                if(flag!=0){
+                //if(flag!=0){
 
                     getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
                     employee_removeEmployee(arrayEmployees,EMPLOYEES,auxiliarId);
-                }
+               /* }
                 else{
 
                     printf("\nDebe ingresar un empleado\n");
-                }
+                }*/
                 break;
 
             case 4:
