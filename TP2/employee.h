@@ -1,5 +1,5 @@
-#ifndef EMPLEADO_H_INCLUDED
-#define EMPLEADO_H_INCLUDED
+#ifndef EMPLOYEE_H_INCLUDED
+#define EMPLOYEE_H_INCLUDED
 
 typedef struct{
     int id;
@@ -22,7 +22,7 @@ typedef struct{
  * \return 0 si la entrada es correcta, sino -1
  *
  */
-int employee_initEmployees(eEmployee* arrayEmployees, int limite);
+int employee_initEmployees(eEmployee* arrayEmployees, int limit);
 
  /**
  * \brief Carga el array de cliente
@@ -30,7 +30,7 @@ int employee_initEmployees(eEmployee* arrayEmployees, int limite);
  * \param limite de array de Cliente
  * \return 0 si la entrada es correcta
  */
-int employee_addEmployees(eEmployee* arrayEmployees, int limite, int index);
+int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index);
 
 /**
  * \brief Modifica el array de un empleado
@@ -39,9 +39,9 @@ int employee_addEmployees(eEmployee* arrayEmployees, int limite, int index);
  * \param id Empleado a buscar
  * \return 0 si la entrada es correcta
  */
-int employee_modificacion(eEmployee* arrayEmployees, int limit, int index);
+int employee_updateEmployees(eEmployee* arrayEmployees, int limit, int index);
 
-int employee_mostrarModificacion(eEmployee* arrayEmployees,int limit);
+int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit);
 
 /**
  * \brief Baja de un Empleado
@@ -58,7 +58,7 @@ int employee_removeEmployee(eEmployee* arrayEmployees, int limit, int index);
  * \param limite de array de Empleados
  * \return -1 o -2 si falla
  */
-int employee_buscarLugarLibre(eEmployee* arrayEmployees,int limit);
+int employee_searchForFreePosition(eEmployee* arrayEmployees,int limit);
 
 /**
  * \brief Busca id dentro del array
@@ -67,24 +67,24 @@ int employee_buscarLugarLibre(eEmployee* arrayEmployees,int limit);
   * \param id a buscar
  * \return -1 o -2 si falla
  */
-int employee_buscarPorId(eEmployee* arrayEmployees,int limit, int id);
+int employee_findEmployeeById(eEmployee* arrayEmployees,int limit, int id);
 
 /**
- * \brief Ordena el array de empleados [Por Apellido - Por Sector]
+ * \brief Ordena el array de empleados [Por Apellido: "employee_orderByLastName" - Por Sector: "employee_orderBySector"]
  * \param array de Empleados
  * \param limite de array de Empleados
   * \param orden criterio a ordenar
  * \return 0 si la entrada es correcta
  */
-int employee_ordenarXapellido(eEmployee* arrayEmployees,int limite, int orden);
-int employee_ordenarXsector(eEmployee* arrayEmployees,int limite, int orden);
+int employee_orderByLastName(eEmployee* arrayEmployees,int limit, int order);
+int employee_orderBySector(eEmployee* arrayEmployees,int limit, int order);
 
-float employee_promedioSueldos(eEmployee* arrayEmployees,int limite);
+float employee_averageSalary(eEmployee* arrayEmployees,int limit);
 
-int employee_superiorAlPromedio(eEmployee* arrayEmployees,int limite, float promedioSueldos);
+int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSalary);
 
 /**
- * \brief Alta de una empleado sin usar ciclos
+ * \brief Alta de una empleado sin usar ciclos (solo para pruebas)
  * \param array de Empleados
  * \param limite de array de Empleados
  * \param name del empleado
@@ -93,13 +93,13 @@ int employee_superiorAlPromedio(eEmployee* arrayEmployees,int limite, float prom
  * \param sector sector del empleado
  * \return 0 si la entrada es correcta
  */
-int employee_altaForzada(eEmployee* arrayEmployees,int limite,char* name,char* lastname, float salary,int sector);
+int employee_forceAdd(eEmployee* arrayEmployees,int limite,char* name,char* lastname, float salary,int sector);
 
 /**
- * \brief Muestra el array de Empleados
+ * \brief Muestra el array de Empleados de forma encolumnada.
  * \param array de Empleados
  * \param limite de array de Empleados
  * \return 0 si la entrada es correcta
  */
-int employee_mostrar(eEmployee* arrayEmployees,int limite);
+int employee_printEmployees(eEmployee* arrayEmployees,int limit);
 

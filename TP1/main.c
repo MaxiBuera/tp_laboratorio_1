@@ -3,6 +3,9 @@
 #include <time.h>
 #include <string.h>
 #include "funciones.h"
+#include "utn.h"
+
+void pedirOperando(int operando, char message[]);
 
 int main()
 {
@@ -11,15 +14,14 @@ int main()
     int primerOperando=0;
     int segundoOperando=0;
     int aux;
-    printf("\n- Ingresar 1er operando (A=X)\n");
-    getInt(&primerOperando,"Ingrese Primer Operando: ","Rango valido [-200000 - 200000]\n",-200000,200000);
-    printf("- Ingresar 2do operando (B=Y)\n");
-    getInt(&segundoOperando,"Ingrese Segundo Operando: ","Rango valido [-200000 - 200000]\n",-200000,200000);
+
 
     do
     {
 
-        printf("\n1- Calcular la suma (%d+%d)\n",primerOperando,segundoOperando);
+        pedirOperando(primerOperando,"\n1- Ingresar 1er operando (A=X)\n");
+        pedirOperando(segundoOperando,"\n2- Ingresar 2do operando (B=Y)\n");
+        printf("\n3- Calcular la suma (%d+%d)\n",primerOperando,segundoOperando);
         printf("2- Calcular la resta (%d-%d)\n",primerOperando,segundoOperando);
         printf("3- Calcular la division (%d/%d)\n",primerOperando,segundoOperando);
         printf("4- Calcular la multiplicacion (%d*%d)\n",primerOperando,segundoOperando);
@@ -55,4 +57,9 @@ int main()
     }while(opcion!=6);
 
     return 0;
+}
+
+void pedirOperando(int operando, char message[]){
+
+    getInt(&operando,"Ingrese Operando: ","Rango valido [-200000 - 200000]\n",-200000,200000);
 }

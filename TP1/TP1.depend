@@ -31,3 +31,29 @@
 	<string.h>
 	"funciones.h"
 
+1601343757 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+
+1601343656 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\funciones.h
+
+1601343656 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"funciones.h"
+	"utn.h"
+
+1601343654 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\utn.h
+
+1601343784 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+

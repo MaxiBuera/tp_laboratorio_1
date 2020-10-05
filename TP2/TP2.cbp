@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="empleado.c">
+		<Unit filename="employee.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="empleado.h" />
+		<Unit filename="employee.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -43,9 +43,6 @@
 		</Unit>
 		<Unit filename="utn.h" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

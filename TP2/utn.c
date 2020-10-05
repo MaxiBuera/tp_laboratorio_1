@@ -71,7 +71,6 @@ char getNumeroAleatorio(int desde , int hasta, int iniciar)
  * \return 1 si es númerico y 0 si no lo es
  *
  */
-
 int esNumericoFlotante(char str[])
 {
    int i=0;

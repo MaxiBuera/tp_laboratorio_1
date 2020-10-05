@@ -3,10 +3,10 @@
 #include <time.h>
 #include <string.h>
 #include "utn.h"
-#include "empleado.h"
+#include "employee.h"
 #define OCUPADO 0
 #define LIBRE 1
-#define EMPLEADOS 5
+#define EMPLOYEES 5 // no mas de 1000 empleados
 
 int main()
 {
@@ -15,16 +15,16 @@ int main()
     int index;
     int auxiliarId;
     int flag = 0;
-    int flagAlta;
-    float promedioSueldos;
+    int flagAdd;
+    float averageSalary;
 
-    eEmployee arrayEmpleados[EMPLEADOS];
+    eEmployee arrayEmployees[EMPLOYEES];
 
-    empleado_inicializar(arrayEmpleados,EMPLEADOS);
+    employee_initEmployees(arrayEmployees,EMPLOYEES);
 
-    //empleado_altaForzada(arrayEmpleados,EMPLEADOS,"Pablo","Gimenez",20000,2);
-    //empleado_altaForzada(arrayEmpleados,EMPLEADOS,"Mariano","Alfonso",30000,1);
-
+    //Solo para testear
+    employee_forceAdd(arrayEmployees,EMPLOYEES,"Pablo","Gimenez",20000,2);
+    employee_forceAdd(arrayEmployees,EMPLOYEES,"Mariano","Alfonso",30000,1);
 
 
     do{
@@ -35,11 +35,11 @@ int main()
 
             case 1:
 
-                index = empleado_buscarLugarLibre(arrayEmpleados,EMPLEADOS);
+                index = employee_searchForFreePosition(arrayEmployees,EMPLOYEES);
                 if(index >= 0){
 
-                    flagAlta = empleado_alta(arrayEmpleados,EMPLEADOS,index);
-                    if(flagAlta == 0)
+                    flagAdd = employee_addEmployees(arrayEmployees,EMPLOYEES,index);
+                    if(flagAdd == 0)
                         flag = 1;
                 }
                 else{
@@ -51,9 +51,9 @@ int main()
             case 2:
 
                 if(flag!=0){
-                    empleado_mostrarModificacion(arrayEmpleados,EMPLEADOS);
-                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLEADOS,2);
-                    empleado_modificacion(arrayEmpleados,EMPLEADOS,auxiliarId);
+                    employee_showEmployeeUpdated(arrayEmployees,EMPLOYEES);
+                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
+                    employee_updateEmployees(arrayEmployees,EMPLOYEES,auxiliarId);
                 }
                 else{
 
@@ -65,8 +65,8 @@ int main()
 
                 if(flag!=0){
 
-                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLEADOS,2);
-                    empleado_baja(arrayEmpleados,EMPLEADOS,auxiliarId);
+                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
+                    employee_removeEmployee(arrayEmployees,EMPLOYEES,auxiliarId);
                 }
                 else{
 
@@ -76,17 +76,17 @@ int main()
 
             case 4:
 
-                if(flag!=0){
-      /*1*/         empleado_ordenarXapellido(arrayEmpleados,EMPLEADOS,0);
-                    empleado_ordenarXsector(arrayEmpleados,EMPLEADOS,0);
-                    empleado_mostrar(arrayEmpleados,EMPLEADOS);
-      /*2*/         promedioSueldos = empleado_promedioSueldos(arrayEmpleados,EMPLEADOS);
-                    empleado_superiorAlPromedio(arrayEmpleados,EMPLEADOS,promedioSueldos);
-                }
+               // if(flag!=0){
+      /*1*/         employee_orderByLastName(arrayEmployees,EMPLOYEES,0);
+                    employee_orderBySector(arrayEmployees,EMPLOYEES,0);
+                    employee_printEmployees(arrayEmployees,EMPLOYEES);
+      /*2*/         averageSalary = employee_averageSalary(arrayEmployees,EMPLOYEES);
+                    employee_aboveAverage(arrayEmployees,EMPLOYEES,averageSalary);
+               /* }
                     else{
 
                         printf("\nDebe ingresar un empleado\n");
-                }
+                }*/
                 break;
         }
     }while(menu != 5);
