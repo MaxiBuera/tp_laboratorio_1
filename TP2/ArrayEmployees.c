@@ -5,12 +5,13 @@
 #include "utn.h"
 #include "ArrayEmployees.h"
 #define SECTOR 10
-#define MINSALARY 0
-#define MAXSALARY 100000
+#define MINSALARY 1
+#define MAXSALARY 300000
 #define OCCUPIED 0
 #define FREE 1
 
 static int nextId();
+
 
 void employee_normalizeTextString(char textString[]){
 
@@ -51,7 +52,7 @@ int employee_initEmployees(eEmployee* arrayEmployees, int limit){
     return returnValue;
 }
 
-int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
+int employee_addEmployee(eEmployee* arrayEmployees, int limit, int index){
 
     int returnValue = -1;
     char nameAux[51];
@@ -65,7 +66,7 @@ int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
         returnValue = -2;
         id = nextId();
 
-        if(getStringLetras("Ingrese nombre: ",nameAux)){
+        if(getStringLetras("\nIngrese nombre: ",nameAux)){
 
             if(getStringLetras("Ingrese apellido: ",lastnameAux)){
 
@@ -83,6 +84,7 @@ int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index){
                         arrayEmployees[index].sector = sectorAux;
                         arrayEmployees[index].isEmpty = OCCUPIED;
                         arrayEmployees[index].id = id;
+                        printf("\n\tEmpleado Agregado...");
                         returnValue = 0;
                     }
                 }
@@ -150,14 +152,14 @@ int employee_printEmployees(eEmployee* arrayEmployees,int limit){
     if(limit > 0 && arrayEmployees != NULL)
     {
         returnValue = 0;
-        printf("\n\tNombre\t\tApellido\tID\tSector\tSalario");
-        printf("\n\t--------------------------------------------------------");
+        printf("\n\tNombre\t\tApellido\tID\tSector\t  Salario");
+        printf("\n\t----------------------------------------------------------");
         for(i=0;i<limit;i++)
         {
         	if(!arrayEmployees[i].isEmpty)
             {
 
-           		printf("\n\t%s\t\t%s\t\t%d\t%d\t%.2f",arrayEmployees[i].name,arrayEmployees[i].lastname,arrayEmployees[i].id,arrayEmployees[i].sector,arrayEmployees[i].salary);
+           		printf("\n%16s %14s %9d %9d %14.2f",arrayEmployees[i].name,arrayEmployees[i].lastname,arrayEmployees[i].id+1,arrayEmployees[i].sector,arrayEmployees[i].salary);
            	}
         }
     }
@@ -191,12 +193,13 @@ int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit){
     {
         returnValue = 0;
         printf("\n\tNombre\t\tApellido\tID");
+        printf("\n\t----------------------------------");
         for(i=0;i<limit;i++)
         {
         	if(!arrayEmployees[i].isEmpty)
             {
 
-           		printf("\n\t%s\t\t%s\t\t%d",arrayEmployees[i].name,arrayEmployees[i].lastname,arrayEmployees[i].id);
+           		printf("\n%16s %14s %9d",arrayEmployees[i].name,arrayEmployees[i].lastname,arrayEmployees[i].id+1);
         	}
         }
     }
@@ -204,42 +207,70 @@ int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit){
     return returnValue;
 }
 
-int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
+void employee_menuUpdateEmployee(eEmployee* arrayEmployees, int index){
 
-    int indice;
-    int returnValue = -1;
+    int opc;
     char nameAux[51];
-    char lastnameAux[51];
+    char lastNameAux[51];
     float salaryAux;
     int sectorAux;
 
+    printf("\nEmpleado a Modificar: %s %s",arrayEmployees[index].name,arrayEmployees[index].lastname);
 
-    indice = employee_findEmployeeById(arrayEmployees,limit,index);
-    if(indice >= 0)
-    {
-        returnValue = 0;
-        if(getStringLetras("Ingrese nombre: ",nameAux)){
+    do{
 
-            if(getStringLetras("Ingrese nombre: ",lastnameAux)){
+        getValidInt("\n\n\t1.Modificar Nombre\n\t2.Modificar Apellido\n\t3.Modificar Salario\n\t4.Modificar Sector\n\t5.Listo\n","\nNo valida\n",&opc,1,5,1);
+        switch(opc)
+        {
+            case 1:
+                if(getStringLetras("\nIngrese nombre: ",nameAux)){
 
+                    employee_normalizeTextString(nameAux);
+                    strcpy(arrayEmployees[index].name,nameAux);
+                    printf("\nNombre Modificado...");
+                }
+                break;
+            case 2:
+                if(getStringLetras("Ingrese apellido: ",lastNameAux)){
+
+                    employee_normalizeTextString(lastNameAux);
+                    strcpy(arrayEmployees[index].lastname,lastNameAux);
+                    printf("\nApellido Modificado...");
+                }
+                break;
+            case 3:
                 if(!getValidFloat("Ingrese salario: ","\nError",&salaryAux,MINSALARY,MAXSALARY,2)){
 
-                    if(!getValidInt("Ingrese sector: ","\nError",&sectorAux,0,SECTOR,2)){
-
-                        strcpy(arrayEmployees[index].name,nameAux);
-                        strcpy(arrayEmployees[index].lastname,lastnameAux);
-                        arrayEmployees[index].salary = salaryAux;
-                        arrayEmployees[index].salary = sectorAux;
-                        arrayEmployees[index].isEmpty = OCCUPIED;
-                        returnValue = 0;
-                    }
+                    arrayEmployees[index].salary = salaryAux;
+                    printf("\nSalario Modificado...");
                 }
-            }
-    }
+                break;
+            case 4:
+                if(!getValidInt("Ingrese sector: ","\nError",&sectorAux,0,SECTOR,2)){
+
+                    arrayEmployees[index].sector = sectorAux;
+                    printf("\nSector Modificado...");
+                }
+                break;
+        }
+    }while(opc != 5);
+}
+
+int employee_updateEmployee(eEmployee* arrayEmployees, int limit,int index){
+
+    int i;
+    int returnValue = -1;
+
+    i = employee_findEmployeeById(arrayEmployees,limit,index);
+    if(i >= 0)
+    {
+        employee_menuUpdateEmployee(arrayEmployees,i);
+        arrayEmployees[i].isEmpty = OCCUPIED;
+        returnValue = 0;
     }
     else{
 
-        printf("\nID no encontrado");
+        printf("\nError");
     }
     return returnValue;
 }
@@ -247,12 +278,23 @@ int employee_updateEmployees(eEmployee* arrayEmployees, int limit,int index){
 int employee_removeEmployee(eEmployee* arrayEmployees, int limit,int index){
 
     int returnValue = -1;
-    int indice;
-    indice = employee_findEmployeeById(arrayEmployees,limit,index);
-    if(indice >= 0)
+    int i;
+    char confirm;
+    i = employee_findEmployeeById(arrayEmployees,limit,index);
+    if(i >= 0)
     {
-        returnValue = 0;
-        arrayEmployees[indice].isEmpty = FREE;
+        printf("\nEmpleado a eliminar: %s %s",arrayEmployees[i].name,arrayEmployees[i].lastname);
+        confirm = getChar("\n¿Desea eliminar el empleado? [s/n]: ");
+        if(confirm == 's' || confirm == 'S'){
+            arrayEmployees[i].isEmpty = FREE;
+            printf("\n\n\tEmpleado Eliminado...");
+            returnValue = 0;
+        }
+        else if(confirm == 'n' || confirm == 'N'){
+
+            printf("\n\tEmpleado No Eliminado...");
+            return returnValue;
+        }
     }
     else{
 
@@ -347,7 +389,7 @@ float totalSalaries(eEmployee* arrayEmployees,int limit){
 int currentEmployees(eEmployee* arrayEmployees,int limit){
 
     int i;
-    int cantidadEmpleados = 0;
+    int totalEmployees = 0;
 
     if(limit > 0 && arrayEmployees != NULL){
 
@@ -355,25 +397,25 @@ int currentEmployees(eEmployee* arrayEmployees,int limit){
 
             if(arrayEmployees[i].isEmpty == 0){
 
-                cantidadEmpleados++;
+                totalEmployees++;
             }
         }
     }
 
-    return cantidadEmpleados;
+    return totalEmployees;
 }
 
 float employee_averageSalary(eEmployee* arrayEmployees,int limit){
 
     float total,averageSalary;
-    int cantidadEmpleados;
+    int totalEmployees;
 
     if(limit > 0 && arrayEmployees != NULL){
 
         total = totalSalaries(arrayEmployees,limit);
-        cantidadEmpleados = currentEmployees(arrayEmployees,limit);
+        totalEmployees = currentEmployees(arrayEmployees,limit);
 
-        averageSalary = total / cantidadEmpleados;
+        averageSalary = total / totalEmployees;
 
         printf("\n\n\tTotal sueldos: %.2f",total);
         printf("\n\tSueldo Promedio: %.2f",averageSalary);
@@ -386,7 +428,7 @@ int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSala
 
     int returnValue = -1;
     int i;
-    int cantidadEmpleadosMayorAlPromedio = 0;
+    int employeesGreaterThanAverage = 0;
 
     if(limit > 0 && arrayEmployees != NULL){
 
@@ -394,14 +436,16 @@ int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSala
 
         for(i=0;i<limit;i++){
 
-            if(arrayEmployees[i].salary > averageSalary){
+            if(arrayEmployees[i].isEmpty == OCCUPIED){
+                if(arrayEmployees[i].salary > averageSalary){
 
-                cantidadEmpleadosMayorAlPromedio++;
+                    employeesGreaterThanAverage++;
+                }
             }
         }
     }
 
-    printf("\n\n\tCantidad de empleados cuyos salarios superan el promedio: %d empleado(s)",cantidadEmpleadosMayorAlPromedio);
+    printf("\n\n\tCantidad de empleados cuyos salarios superan el promedio: %d empleado(s)",employeesGreaterThanAverage);
 
     return returnValue;
 }
@@ -410,7 +454,7 @@ int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSala
 
 static int nextId()
 {
-    static int lastId = 0;
+    static int lastId = -1;
     lastId++;
     return lastId;
 }

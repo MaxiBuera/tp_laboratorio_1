@@ -6,7 +6,7 @@
 #include "ArrayEmployees.h"
 #define OCCUPIED 0
 #define FREE 1
-#define EMPLOYEES 5 // 1000 empleados
+#define EMPLOYEES 1000 // 1000 empleados
 
 int main()
 {
@@ -23,8 +23,9 @@ int main()
     employee_initEmployees(arrayEmployees,EMPLOYEES);
 
     //Solo para testear
-    employee_forceAdd(arrayEmployees,EMPLOYEES,"Pablo","Gimenez",20000,2);
-    employee_forceAdd(arrayEmployees,EMPLOYEES,"Mariano","Alfonso",30000,1);
+    /*employee_forceAdd(arrayEmployees,EMPLOYEES,"Pablo","Gimenez",20000,2);
+    employee_forceAdd(arrayEmployees,EMPLOYEES,"Mariano","Alfonso",50000,1);
+    employee_forceAdd(arrayEmployees,EMPLOYEES,"Marcelo","Gigliotti",50000,1);*/
 
 
     do{
@@ -37,8 +38,7 @@ int main()
 
                 index = employee_searchForFreePosition(arrayEmployees,EMPLOYEES);
                 if(index >= 0){
-
-                    flagAdd = employee_addEmployees(arrayEmployees,EMPLOYEES,index);
+                    flagAdd = employee_addEmployee(arrayEmployees,EMPLOYEES,index);
                     if(flagAdd == 0)
                         flag = 1;
                 }
@@ -52,9 +52,9 @@ int main()
 
                 if(flag!=0){
                     employee_showEmployeeUpdated(arrayEmployees,EMPLOYEES);
-                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
-                    employee_updateEmployees(arrayEmployees,EMPLOYEES,auxiliarId);
-                }
+                    getValidInt("\tID a modificar: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
+                    employee_updateEmployee(arrayEmployees,EMPLOYEES,auxiliarId-1);
+               }
                 else{
 
                     printf("\nDebe ingresar un empleado\n");
@@ -63,30 +63,32 @@ int main()
 
             case 3:
 
-                //if(flag!=0){
-
-                    getValidInt("ID: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
-                    employee_removeEmployee(arrayEmployees,EMPLOYEES,auxiliarId);
-               /* }
+                if(flag!=0){
+                    employee_orderByLastName(arrayEmployees,EMPLOYEES,0);
+                    employee_orderBySector(arrayEmployees,EMPLOYEES,0);
+                    employee_showEmployeeUpdated(arrayEmployees,EMPLOYEES);
+                    getValidInt("\nID a eliminar: ","\nID No valido\n",&auxiliarId,0,EMPLOYEES,2);
+                    employee_removeEmployee(arrayEmployees,EMPLOYEES,auxiliarId-1);
+                }
                 else{
 
                     printf("\nDebe ingresar un empleado\n");
-                }*/
+                }
                 break;
 
             case 4:
 
-               // if(flag!=0){
+                if(flag!=0){
       /*1*/         employee_orderByLastName(arrayEmployees,EMPLOYEES,0);
                     employee_orderBySector(arrayEmployees,EMPLOYEES,0);
                     employee_printEmployees(arrayEmployees,EMPLOYEES);
       /*2*/         averageSalary = employee_averageSalary(arrayEmployees,EMPLOYEES);
                     employee_aboveAverage(arrayEmployees,EMPLOYEES,averageSalary);
-               /* }
+                }
                     else{
 
                         printf("\nDebe ingresar un empleado\n");
-                }*/
+                }
                 break;
         }
     }while(menu != 5);

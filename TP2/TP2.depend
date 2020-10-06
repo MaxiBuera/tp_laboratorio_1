@@ -63,3 +63,30 @@
 
 1601928269 c:\users\maximiliano.e.buera\desktop\transporte\tp_laboratorio_1\tp2\arrayemployees.h
 
+1601950920 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+	"ArrayEmployees.h"
+
+1601648894 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\utn.h
+
+1601945659 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\arrayemployees.h
+
+1601949427 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+	"ArrayEmployees.h"
+
+1601941424 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+

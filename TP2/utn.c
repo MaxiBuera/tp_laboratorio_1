@@ -197,7 +197,7 @@ int esTelefono(char str[])
 }
 
 /**
- * \brief Solicita un texto al usuario y lo devuelve
+ * \brief Solicita un texto al usuario
  * \param mensaje Es el mensaje a ser mostrado
  * \param input Array donde se cargará el texto ingresado
  * \return void
@@ -210,7 +210,7 @@ void getString(char mensaje[],char input[])
 }
 
 /**
- * \brief Solicita un texto al usuario y lo devuelve
+ * \brief Solicita un texto al usuario
  * \param mensaje Es el mensaje a ser mostrado
  * \param input Array donde se cargará el texto ingresado
  * \return 1 si el texto contiene solo letras
@@ -228,7 +228,7 @@ int getStringLetras(char mensaje[],char input[])
 }
 
 /**
- * \brief Solicita un texto numérico al usuario y lo devuelve
+ * \brief Solicita un texto numérico al usuario
  * \param mensaje Es el mensaje a ser mostrado
  * \param input Array donde se cargará el texto ingresado
  * \return 1 si el texto contiene solo números
@@ -247,7 +247,7 @@ int getStringNumeros(char mensaje[],char input[])
 
 
 /**
- * \brief Solicita un texto numérico al usuario y lo devuelve (acepta flotantes)
+ * \brief Solicita un texto numérico al usuario(acepta flotantes)
  * \param mensaje Es el mensaje a ser mostrado
  * \param input Array donde se cargará el texto ingresado
  * \return 1 si el texto contiene solo números
@@ -264,7 +264,12 @@ int getStringNumerosFlotantes(char mensaje[],char input[])
     return 0;
 }
 
-
+/**
+ * \brief Solicita un texto alfanumérico al usuario
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param input Array donde se cargará el texto ingresado
+ * \return 1 si el texto contiene solo números
+ */
 int getStringAlfaNumerico(char mensaje[],char input[])
 {
     char aux[256];
@@ -277,6 +282,12 @@ int getStringAlfaNumerico(char mensaje[],char input[])
     return 0;
 }
 
+/**
+ * \brief Solicita un texto numérico(soporta todos los caracteres) al usuario
+ * \param mensaje Es el mensaje a ser mostrado
+ * \param input Array donde se cargará el texto ingresado
+ * \return 1 si el texto contiene solo números
+ */
 int getStringAllCharacters(char mensaje[],char input[])
 {
     char aux[256];
@@ -298,7 +309,7 @@ int getStringAllCharacters(char mensaje[],char input[])
  * \param lowLimit Es el limite superior aceptado
  * \param input puntero al lugar donde se cargará el numero ingresado
  * \param attemps indica la cantidad de reintentos ante un error
- * \return 0 si consiguio el Numero -1 si no
+ * \return 0 si consiguio el Numero, -1 si no
  *
  */
 int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLimit, int hiLimit,int attemps)
@@ -311,7 +322,6 @@ int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLim
         if (!getStringNumeros(requestMessage,auxStr))
         {
             printf ("%s",errorMessage);
-            break;
             continue;
 
         }
@@ -340,7 +350,7 @@ int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLim
  * \param input Array donde se cargará el texto ingresado
  * \param maxLenght int Longitud maxima del texto ingresado
  * \param attemps indica la cantidad de reintentos ante un error
- * \return 0 si consiguio el String -1 si no
+ * \return 0 si consiguio el String, -1 si no
  *
  */
 int getValidString(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps)
@@ -377,7 +387,7 @@ int getValidString(char requestMessage[],char errorMessage[], char errorMessageL
  * \param lowLimit Es el limite superior aceptado
  * \param input puntero al lugar donde se cargará el numero ingresado
  * \param attemps indica la cantidad de reintentos ante un error
- * \return 0 si consiguio el Numero -1 si no
+ * \return 0 si consiguio el Numero, -1 si no
  *
  */
 int getValidFloat(char requestMessage[],char errorMessage[], float* input,float lowLimit, float hiLimit,int attemps)
@@ -391,7 +401,6 @@ int getValidFloat(char requestMessage[],char errorMessage[], float* input,float 
         if (!getStringNumerosFlotantes(requestMessage,auxStr))
         {
             printf ("%s",errorMessage);
-            break;
             continue;
 
         }
@@ -411,6 +420,17 @@ int getValidFloat(char requestMessage[],char errorMessage[], float* input,float 
 
 }
 
+/**
+ * \brief Solicita un valor alfanumerico al usuario y lo valida
+ * \param requestMessage Es el mensaje a ser mostrado para solicitar el dato
+ * \param requestMessage Es el mensaje a ser mostrado en caso de error
+ * \param lowLimit Es el limite inferior aceptado
+ * \param lowLimit Es el limite superior aceptado
+ * \param input puntero al lugar donde se cargará el numero ingresado
+ * \param attemps indica la cantidad de reintentos ante un error
+ * \return 0 si consiguio el Numero, -1 si no
+ *
+ */
 int getValidAlfaNumerico(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps)
 {
     int i;
@@ -437,6 +457,17 @@ int getValidAlfaNumerico(char requestMessage[],char errorMessage[], char errorMe
     return retorno;
 }
 
+/**
+ * \brief Solicita un string(soporta todos los caracteres) al usuario y lo valida
+ * \param requestMessage Es el mensaje a ser mostrado para solicitar el dato
+ * \param requestMessage Es el mensaje a ser mostrado en caso de error
+ * \param lowLimit Es el limite inferior aceptado
+ * \param lowLimit Es el limite superior aceptado
+ * \param input puntero al lugar donde se cargará el numero ingresado
+ * \param attemps indica la cantidad de reintentos ante un error
+ * \return 0 si consiguio el Numero, -1 si no
+ *
+ */
 int getValidStringAllCharacters(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps)
 {
     int i;
@@ -463,6 +494,16 @@ int getValidStringAllCharacters(char requestMessage[],char errorMessage[], char 
     return retorno;
 }
 
+/** \brief
+ *
+ * \param input
+ * \param message   mensaje mostrado por pantalla
+ * \param eMessage  mensaje mostrado al recibir -1 como retorno
+ * \param primerOpcion  primer caracter
+ * \param segundaOpcion segundo caracter
+ * \return 0 si consiguio el Numero, -1 si no
+ *
+ */
 int getOpcion(char* input,char message[],char eMessage[], char primerOpcion, char segundaOpcion)
 {
 
@@ -515,5 +556,5 @@ void pause(void)
  */
 void clearScreen(void)
 {
-    system("clear"); //system("cls");
+    system("cls"); //system("clear");
 }

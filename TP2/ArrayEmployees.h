@@ -25,22 +25,31 @@ typedef struct{
 int employee_initEmployees(eEmployee* arrayEmployees, int limit);
 
  /**
- * \brief Carga el array de cliente
+ * \brief Carga al array de clientes con el indice recibido por parametro
  * \param array de Cliente
  * \param limite de array de Cliente
+ * \param indice del array donde guardará el empleado
  * \return 0 si la entrada es correcta
  */
-int employee_addEmployees(eEmployee* arrayEmployees, int limit, int index);
+int employee_addEmployee(eEmployee* arrayEmployees, int limit, int index);
 
 /**
  * \brief Modifica el array de un empleado
- * \param array de Empleados
- * \param limite de array de Empleados
+ * \param arrayEmployees array de Empleados
+ * \param limit  limite del array de Empleados
  * \param id Empleado a buscar
- * \return 0 si la entrada es correcta
+ * \return  (-1) si hay error [limite invalido o puntero NULL] - (0) si Ok
  */
-int employee_updateEmployees(eEmployee* arrayEmployees, int limit, int index);
+int employee_updateEmployee(eEmployee* arrayEmployees, int limit, int index);
 
+
+/** \brief  Muestra la lista de empleados solo con el nombre, apellido y ID del
+            empleado
+ * \param   arrayEmployees  array de Empleados
+ * \param   limit  limite del array de Empleados
+ * \return  (-1) si hay error [limite invalido o puntero NULL] - (0) si Ok
+ *
+ */
 int employee_showEmployeeUpdated(eEmployee* arrayEmployees,int limit);
 
 /**
@@ -71,16 +80,30 @@ int employee_findEmployeeById(eEmployee* arrayEmployees,int limit, int id);
 
 /**
  * \brief Ordena el array de empleados [Por Apellido: "employee_orderByLastName" - Por Sector: "employee_orderBySector"]
- * \param array de Empleados
- * \param limite de array de Empleados
+ * \param arrayEmployees    array de Empleados
+ * \param limit limite del array de Empleados
   * \param orden criterio a ordenar
  * \return 0 si la entrada es correcta
  */
 int employee_orderByLastName(eEmployee* arrayEmployees,int limit, int order);
 int employee_orderBySector(eEmployee* arrayEmployees,int limit, int order);
 
+/** \brief  Calcula el promedio de los sueldos de entre todos los empleados
+ * \param   arrayEmployees  array de Empleados
+ * \param   limit limite del array de Empleados
+ * \return  el sueldo promedio
+ *
+ */
 float employee_averageSalary(eEmployee* arrayEmployees,int limit);
 
+
+/** \brief  Calcula cuantos sueldos son superiores al promedio
+ *
+ * \param   arrayEmployees  array de Empleados
+ * \param   limit limite del array de Empleados
+ * \return 0 si la entrada es correcta, -1 si hay error
+ *
+ */
 int employee_aboveAverage(eEmployee* arrayEmployees,int limit, float averageSalary);
 
 /**
@@ -102,4 +125,13 @@ int employee_forceAdd(eEmployee* arrayEmployees,int limite,char* name,char* last
  * \return 0 si la entrada es correcta
  */
 int employee_printEmployees(eEmployee* arrayEmployees,int limit);
+
+/** \brief Convierte la cadena pasado como parametro. El primer caracter será
+           mayuscula mientras que el resto será minuscula
+ *
+ * \param textString    cadena de texto a convertir
+ * \return -
+ *
+ */
+void employee_normalizeTextString(char textString[]);
 
