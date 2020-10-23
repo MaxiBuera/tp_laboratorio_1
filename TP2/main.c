@@ -7,10 +7,11 @@
 #define OCCUPIED 0
 #define FREE 1
 #define EMPLOYEES 5 // 1000 empleados
-
+int r=1;
 int main()
 {
-
+int r=2;
+printf("%d",r);
     int menu;
     int index;
     int auxiliarId;
