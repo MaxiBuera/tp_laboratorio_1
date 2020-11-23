@@ -1,65 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <string.h>
 #include "funciones.h"
 #include "utn.h"
 
-void pedirOperando(int operando, char message[]);
 
 int main()
 {
 
     int opcion=0;
-    int primerOperando=0;
-    int segundoOperando=0;
+    int primerOperando=(char)'n'; //Los operandos estan inicializados de esta forma para poder mostrar el cambio de valor al visualizar el munu
+    int segundoOperando=(char)'n';
     int aux;
-
 
     do
     {
+        menu(primerOperando,segundoOperando);
 
-        pedirOperando(primerOperando,"\n1- Ingresar 1er operando (A=X)\n");
-        pedirOperando(segundoOperando,"\n2- Ingresar 2do operando (B=Y)\n");
-        printf("\n3- Calcular la suma (%d+%d)\n",primerOperando,segundoOperando);
-        printf("2- Calcular la resta (%d-%d)\n",primerOperando,segundoOperando);
-        printf("3- Calcular la division (%d/%d)\n",primerOperando,segundoOperando);
-        printf("4- Calcular la multiplicacion (%d*%d)\n",primerOperando,segundoOperando);
-        printf("5- Calcular el factorial (%d!) y (%d!)\n",primerOperando,segundoOperando);
-        printf("6- Salir\n");
-
-        aux=getValidInt("\n","\nNo Valida\n",&opcion,1,8,1);
+        aux=getValidInt("\n","\nNo Valida\n",&opcion,1,4,1);
         switch(opcion)
         {
             case 1:
                 if(aux==0)
-                    funcion_suma(primerOperando,segundoOperando);
+                    primerOperando = pedirOperando(primerOperando,"\nIngresar 1er operando: ");
                 break;
             case 2:
                 if(aux==0)
-                    funcion_resta(primerOperando,segundoOperando);
+                    segundoOperando = pedirOperando(segundoOperando,"\nIngresar 2do operando: ");
                 break;
             case 3:
-                if(aux==0)
+                if(aux==0 && primerOperando != 'n' && segundoOperando != 'n'){
+                    funcion_suma(primerOperando,segundoOperando);
+                    funcion_resta(primerOperando,segundoOperando);
                     funcion_division(primerOperando,segundoOperando);
-                break;
-            case 4:
-                if(aux==0)
                     funcion_multiplicacion(primerOperando,segundoOperando);
-                break;
-            case 5:
-                if(aux==0){
                     funcion_factorial(primerOperando);
                     funcion_factorial(segundoOperando);
                 }
+                else{
+                    printf("\nOperando(s) no ingresado(s)\n");
+                }
                 break;
         }
-    }while(opcion!=6);
+    }while(opcion!=4);
 
     return 0;
-}
-
-void pedirOperando(int operando, char message[]){
-
-    getInt(&operando,"Ingrese Operando: ","Rango valido [-200000 - 200000]\n",-200000,200000);
 }

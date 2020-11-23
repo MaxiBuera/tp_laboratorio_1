@@ -4,54 +4,88 @@
 #include <string.h>
 #include "funciones.h"
 
-
+/**
+* \brief Realiza la suma de los parametros ingresados
+* \param primerOperando Primer operando de la cuenta
+* \param segundoOperando Segundo operando de la cuenta
+* \return -
+*
+*/
 void funcion_suma(int primerOperando,int segundoOperando){
 
     int suma=primerOperando+segundoOperando;
 
-    printf("\n%d + %d = %d\n",primerOperando,segundoOperando,suma);
+    printf("\na) El resultado de %d + %d es: %d\n",primerOperando,segundoOperando,suma);
 }
 
+/**
+* \brief Realiza la resta de los parametros ingresados
+* \param primerOperando Primer operando de la cuenta
+* \param segundoOperando Segundo operando de la cuenta
+* \return -
+*
+*/
 void funcion_resta(int primerOperando,int segundoOperando){
 
     int resta=primerOperando-segundoOperando;
 
-    printf("\n%d - %d = %d\n",primerOperando,segundoOperando,resta);
+    printf("\nb) El resultado de %d - %d es: %d\n",primerOperando,segundoOperando,resta);
 }
 
+/**
+* \brief Realiza la division de los parametros ingresados. Validando la division cuando el
+         segundo operando es 0
+* \param primerOperando Primer operando de la cuenta
+* \param segundoOperando Segundo operando de la cuenta
+* \return -
+*
+*/
 void funcion_division(int primerOperando,int segundoOperando){
 
     if((primerOperando == 0 && segundoOperando !=0) || (primerOperando != 0 && segundoOperando != 0)){
 
         float division=(float)primerOperando/segundoOperando;
-        printf("\n%d / %d = %.2f\n",primerOperando,segundoOperando,division);
+        printf("\nc) El resultado de %d / %d es %.2f\n",primerOperando,segundoOperando,division);
     }
     else{
 
-         printf("\nOperacion no permitida\n");
+         printf("\nNo es posible dividir por 0\n");
     }
 }
 
+/**
+* \brief Realiza la multiplicacion de los parametros ingresados
+* \param primerOperando Primer operando de la cuenta
+* \param segundoOperando Segundo operando de la cuenta
+* \return -
+*
+*/
 void funcion_multiplicacion(int primerOperando,int segundoOperando){
 
     int multiplicacion=primerOperando*segundoOperando;
 
-    printf("\n%d * %d = %d\n",primerOperando,segundoOperando,multiplicacion);
+    printf("\nd) El resultado de %d * %d es %d\n",primerOperando,segundoOperando,multiplicacion);
 }
 
-void funcion_factorial(int primerOperando){
+/**
+* \brief Realiza el factorial del primer operando ingresado
+* \param operando Primer operando de la cuenta
+* \return -
+*
+*/
+void funcion_factorial(int operando){
 
     int i;
-    int factorial = primerOperando;
+    int factorial = operando;
 
-    if(primerOperando > 0){
+    if(operando > 0){
 
-        for(i=primerOperando-1;i>0;i--){
+        for(i=operando-1;i>0;i--){
 
             factorial = factorial * i;
         }
 
-        printf("\nFactorial de %d : %d\n",primerOperando,factorial);
+        printf("\nFactorial de %d es %d\n",operando,factorial);
     }
 
     else{

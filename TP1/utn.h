@@ -1,55 +1,39 @@
 #ifndef UTN_H_INCLUDED
 #define UTN_H_INCLUDED
 
-
-/**
- * \brief Verifica si el valor recibido es numérico
- * \param str Array con la cadena a ser analizada
- * \return 1 si es númerico y 0 si no lo es
- *
- */
-int esNumerico(char str[]);
-
-/**
- * \brief Solicita un texto numérico al usuario y lo devuelve
- * \param mensaje Es el mensaje a ser mostrado
- * \param input Array donde se cargará el texto ingresado
- * \return 1 si el texto contiene solo números
- */
-int getStringNumeros(char mensaje[],char input[]);
-
-/**
- * \brief Solicita un texto al usuario y lo devuelve
- * \param mensaje Es el mensaje a ser mostrado
- * \param input Array donde se cargará el texto ingresado
- * \return void
- */
-void getString(char mensaje[],char input[]);
-
-/**
- * \brief Solicita un numero entero al usuario y lo valida
- * \param requestMessage Es el mensaje a ser mostrado para solicitar el dato
- * \param errorMessage Es el mensaje a ser mostrado en caso de error
- * \param lowLimit Es el limite inferior aceptado
- * \param lowLimit Es el limite superior aceptado
- * \param input puntero al lugar donde se cargará el numero ingresado
- * \param attemps indica la cantidad de reintentos ante un error
- * \return 0 si consiguio el Numero -1 si no
- *
- */
-int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLimit, int hiLimit,int attemps);
-
-/**
-* \brief Solicita un numero al usuario y lo valida
-* \param input Se carga el numero ingresado
-* \param message Es el mensaje a ser mostrado
-* \param eMessage Es el mensaje a ser mostrado en caso de error
-* \param lowLimit Limite inferior a validar
-* \param hiLimit Limite superior a validar
-* \return Si obtuvo el numero [0] si no [-1]
-*
-*/
-int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit);
-
-
 #endif // UTN_H_INCLUDED
+
+
+int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit);
+float getFloat(char* mensaje);
+char getChar(char* mensaje);
+
+char getNumeroAleatorio(int desde , int hasta, int iniciar);
+
+int esNumerico(char *str) ;
+int esTelefono(char *str);
+int esAlfaNumerico(char *str);
+int esSoloLetras(char *str);
+int esNumericoFlotante(char str[]);
+int esAlfaNumericoSigno(char str[]);
+
+void getString(char mensaje[],char input[]);
+int getStringLetras(char mensaje[],char input[]);
+int getStringNumeros(char mensaje[],char input[]);
+int getStringNumerosFlotantes(char mensaje[],char input[]);
+int getStringAlfaNumerico(char mensaje[],char input[]);
+int getStringAllCharacters(char mensaje[],char input[]);
+
+int getValidString(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps);
+int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLimit, int hiLimit,int attemps);
+int getValidFloat(char requestMessage[],char errorMessage[], float* input,float lowLimit, float hiLimit,int attemps);
+int getOpcion(char* input,char message[],char eMessage[], char primerOpcion, char segundaOpcion);
+int getValidAlfaNumerico(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps);
+int getValidStringAllCharacters(char requestMessage[],char errorMessage[], char errorMessageLenght[],char input[], int maxLenght,int attemps);
+
+void clearStdin(void);
+void pause(void);
+void clearScreen(void);
+
+int pedirOperando(int operando, char message[]);
+void menu(int primerOperando, int segundoOperando);
