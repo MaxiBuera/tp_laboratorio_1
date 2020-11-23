@@ -431,27 +431,14 @@ void* ll_pop(LinkedList* this,int index)
 int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
-    /*int i;
-    Node* pNodeAux;
-    if(this != NULL)
-    {
-        pNodeAux = NULL;
-        returnAux = 0;
-        for(i=0; i<ll_len(this); i++)
-        {
-            pNodeAux = ll_get(this, i);
-            if(pNodeAux == pElement)
-            {
-                returnAux = 1;
-                break;
-            }
-        }
-    }*/
 
     if(this != NULL){
 
-        if(ll_indexOf(this,pElement)==-1){
-            returnAux=0;
+        returnAux = 1;
+
+        if(ll_indexOf(this,pElement)==-1){ //returnAux = ll_indexOf(this,pElement) == -1 ? 0 : 1
+
+            returnAux = 0;
         }
     }
 
@@ -486,7 +473,6 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
                 returnAux = 0;
                 break;
             }
-
         }
     }
 
