@@ -40,10 +40,9 @@
 
 1606018185 c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\funciones.h
 
-1606091121 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\main.c
+1606091208 source:c:\users\maxii\documents\tps_utn\tp_laboratorio_1\tp1\main.c
 	<stdio.h>
 	<stdlib.h>
-	<time.h>
 	<string.h>
 	"funciones.h"
 	"utn.h"
